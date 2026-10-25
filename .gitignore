@@ -1,0 +1,31 @@
+# ROS 2 workspace build artifacts
+ga_ws/build/
+ga_ws/install/
+ga_ws/log/
+
+# Flight data - rosbags and ArduPilot logs
+bags/
+logs/
+*.db3
+*.mcap
+*.bin
+*.BIN
+*.tlog
+*.tlog.raw
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# IDE / editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Backup files
+*.bak
+*.orig
