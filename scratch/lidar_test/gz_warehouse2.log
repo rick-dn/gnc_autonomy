@@ -1,0 +1,2 @@
+[1;33mWarning [Utils.cc:132][0m [[@degrees="true"]:/data/projects/udl_aakash/ros_ws/src/ardupilot_gazebo/worlds/iris_warehouse_rangefinder.sdf:L306]: XML Attribute[degrees] in element[include] not defined in SDF.
+Topic [/model/Mecanum lift/tf] is not valid.

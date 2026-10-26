@@ -4,6 +4,7 @@ ga_ws/install/
 ga_ws/log/
 
 # Flight data - rosbags and ArduPilot logs
+runs/
 bags/
 logs/
 *.db3

@@ -14,12 +14,13 @@ setup(
     install_requires=['setuptools'],
     zip_safe=True,
     maintainer='Your Name',
-    maintainer_email='',
+    maintainer_email='maintainer@example.com',
     description='MAVROS adapter used directly by standalone mission scripts',
     license='MIT',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'source_switcher = ga_vehicle.source_switcher:main',
         ],
     },
 )

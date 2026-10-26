@@ -1,0 +1,19 @@
+# MAVROS distance_sensor config for iris_with_rangefinder.
+# Loaded by scripts/start_rangfinder.sh via --params-file.
+#
+# ArduPilot sends the rangefinder as DISTANCE_SENSOR (id 0), not RANGEFINDER,
+# so /mavros/rangefinder/rangefinder stays empty. This publishes it on
+# /mavros/rangefinder_pub (sensor_msgs/Range) - MAVROS 2.14 names the topic
+# after the config key, directly under /mavros.
+# Format follows mavros/launch/apm_config.yaml.
+
+/**/distance_sensor:
+  ros__parameters:
+    config: |
+      rangefinder_pub:
+        id: 0
+        frame_id: "rangefinder_link"
+        orientation: PITCH_270    # RNGFND1_ORIENT 25, as sent by the FCU
+        field_of_view: 0.0
+        send_tf: false
+        sensor_position: {x: 0.0, y: 0.0, z: -0.1}

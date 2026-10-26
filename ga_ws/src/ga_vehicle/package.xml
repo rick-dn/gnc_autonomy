@@ -4,7 +4,7 @@
   <name>ga_vehicle</name>
   <version>0.1.0</version>
   <description>MAVROS adapter used directly by standalone mission scripts</description>
-  <maintainer email="">Your Name</maintainer>
+  <maintainer email="maintainer@example.com">Your Name</maintainer>
   <license>MIT</license>
 
   <depend>rclpy</depend>

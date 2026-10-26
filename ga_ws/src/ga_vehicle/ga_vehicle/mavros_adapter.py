@@ -7,7 +7,7 @@ Handles all MAVROS service calls and topic subscriptions
 from rclpy.node import Node
 from rclpy.qos import QoSProfile, ReliabilityPolicy, HistoryPolicy, DurabilityPolicy
 
-from mavros_msgs.srv import CommandBool, SetMode, CommandTOL
+from mavros_msgs.srv import CommandBool, SetMode, CommandTOL, CommandLong
 from mavros_msgs.msg import State
 from sensor_msgs.msg import NavSatFix, Imu, BatteryState
 from geographic_msgs.msg import GeoPoseStamped
@@ -19,6 +19,10 @@ from std_msgs.msg import Float64
 
 import math
 
+
+# ArduPilot-specific MAVLink command (ardupilotmega.xml); param1 is the
+# source set, 1..3
+MAV_CMD_SET_EKF_SOURCE_SET = 42007
 
 # in_air hysteresis thresholds (metres, local ENU altitude - height above the
 # EKF origin, not AGL and not AMSL). Climbing above UP latches in_air True;
@@ -66,6 +70,7 @@ class MavrosAdapter:
         self.mode_client = self.node.create_client(SetMode, '/mavros/set_mode')
         self.takeoff_client = self.node.create_client(CommandTOL, '/mavros/cmd/takeoff')
         self.land_client = self.node.create_client(CommandTOL, '/mavros/cmd/land')
+        self.command_client = self.node.create_client(CommandLong, '/mavros/cmd/command')
 
         # MAVROS subscribers
         self.home_sub = self.node.create_subscription(
@@ -264,6 +269,9 @@ class MavrosAdapter:
         self.gps_satellites_visible = 0
         self.gps_eph = 0
         self.gps_epv = 0
+        # Node-clock time of the last GPSRAW message, None until the first.
+        # Lets callers tell a stale GPS status from a current one.
+        self.gps_raw_time = None
 
         # Heading, CCW positive from East (converted from MAVLink's CW-from-North compass bearing)
         self.heading_deg = 0.0
@@ -443,6 +451,7 @@ class MavrosAdapter:
         self.gps_satellites_visible = msg.satellites_visible
         self.gps_eph = msg.eph
         self.gps_epv = msg.epv
+        self.gps_raw_time = self.node.get_clock().now()
 
     def compass_hdg_callback(self, msg):
         """
@@ -713,6 +722,30 @@ class MavrosAdapter:
         # Fire and forget - JacopoPan style
         self.mode_client.call_async(request)
         self.node.get_logger().info('RTL mode set')
+        return True
+
+    def set_ekf_source_set(self, source_set):
+        """
+        Select the EKF3 source set (1..3, as EK3_SRCn_*). Fire-and-forget like
+        the other commands, but the FC's accept/deny is logged when it arrives.
+        """
+        if not self.command_client.wait_for_service(timeout_sec=5.0):
+            self.node.get_logger().error('Command service not available')
+            return False
+
+        request = CommandLong.Request()
+        request.command = MAV_CMD_SET_EKF_SOURCE_SET
+        request.param1 = float(source_set)
+
+        future = self.command_client.call_async(request)
+        future.add_done_callback(
+            lambda f: self.node.get_logger().info(
+                f'EKF source set {source_set}: '
+                f'{"accepted" if f.result() and f.result().success else "REJECTED"}'
+                f' (result={f.result().result if f.result() else "none"})'
+            )
+        )
+        self.node.get_logger().info(f'EKF source set {source_set} commanded')
         return True
 
     @staticmethod

@@ -1,0 +1,16 @@
+# Base params for gnc_autonomy SITL, layered on top of gazebo-iris.parm.
+# Loaded by launch_sim.sh via --add-param-file. Study-specific params
+# (EKF source sets, faults, failsafes) go in their own files.
+
+# Downward rangefinder: one-beam gpu_lidar in iris_with_rangefinder, sent by
+# the ArduPilot Gazebo plugin as rng_1. Overrides gazebo-iris.parm's analog
+# IRLOCK sonar (RNGFND1_TYPE 1).
+RNGFND1_TYPE    100
+RNGFND1_ORIENT  25
+RNGFND1_MIN     0.15
+RNGFND1_MAX     40.0
+
+# Optical flow: ArduPilot's built-in SITL flow, computed from the FDM state
+# Gazebo sends (assumes flat ground). Not fused until a study selects it.
+SIM_FLOW_ENABLE 1
+FLOW_TYPE       10
