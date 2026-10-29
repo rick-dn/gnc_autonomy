@@ -1,0 +1,6 @@
+# Logging for the custom estimator flights, loaded only by
+# scripts/start_estimator.sh. Not used by the P1 launcher.
+
+# Default Copter mask (180222) plus bit 18, Fast IMU: logs IMU at the 400 Hz
+# main loop instead of 25 Hz, so the estimator can propagate on it.
+LOG_BITMASK 442366

@@ -1,0 +1,22 @@
+# Sensor noise for batch fault runs, loaded by ga_faults.run after batch.parm
+# (skip with --no-noise). What this SITL build can actually do, from its sources:
+#   SIM_GYRn_RND   deg/s, uniform, scaled by throttle (~0.4 at hover). Mostly
+#                  removed by ArduPilot's 20 Hz gyro filter, so the effect is small.
+#   SIM_BARO_RND   m, random height noise - clearly visible in the log
+#   SIM_GPS1_VERR  m/s, uniform random GPS velocity error per axis
+#   SIM_GPS1_NOISE m, slow sine on GPS altitude
+# Not used:
+#   SIM_ACCn_RND   only scales the vibration models (SIM_VIB_FREQ / SIM_VIB_MOT_MAX),
+#                  it adds no random accel noise on its own
+#   horizontal GPS position noise - this SITL GPS model has none
+# SITL never seeds its random generator, so every run gets the same noise
+# sequence; the runner varies the fault time to get run-to-run spread.
+
+SIM_GYR1_RND    1.5
+SIM_GYR2_RND    1.5
+SIM_BARO_RND    0.2
+SIM_BAR2_RND    0.2
+SIM_GPS1_VERR_X 0.1
+SIM_GPS1_VERR_Y 0.1
+SIM_GPS1_VERR_Z 0.1
+SIM_GPS1_NOISE  0.3

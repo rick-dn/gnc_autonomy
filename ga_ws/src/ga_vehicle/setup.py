@@ -21,6 +21,7 @@ setup(
     entry_points={
         'console_scripts': [
             'source_switcher = ga_vehicle.source_switcher:main',
+            'shuttle_flight = ga_vehicle.shuttle_flight:main',
         ],
     },
 )

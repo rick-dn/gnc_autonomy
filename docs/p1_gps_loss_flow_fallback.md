@@ -137,6 +137,9 @@ time. The rangefinder read 5.08–5.10 m throughout the hover.
 - One run, in simulation. The flow model is clean and the floor is flat;
   real flow sensors are noisier and depend on texture and light.
 - The switch is done off-board over MAVROS, so it depends on the link. If the
-  link dropped at the same time as GPS, nothing would switch. ArduPilot's
-  onboard Lua script (`ahrs-source-gps-optflow.lua`) would avoid that.
-- Only GPS loss so far. GPS glitches, IMU bias and compass faults are next.
+  link dropped at the same time as GPS, nothing would switch.
+
+The follow-up, [the EKF3 fault matrix](fault_matrix.md), moves the switch
+onboard with ArduPilot's Lua script (and fixes a gap that stops the stock
+script seeing a total GPS loss), and adds GPS glitches, IMU biases and
+compass faults over repeated runs.

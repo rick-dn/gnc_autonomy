@@ -1,0 +1,24 @@
+# Batch fault runs on ArduPilot's built-in physics (no Gazebo).
+# Loaded by ga_faults.run after copter.parm, followed by p1_sources.parm.
+
+# Rangefinder and optical flow both simulated by SITL itself. In built-in
+# physics mode SITL computes the range from the vehicle state, so the SITL
+# rangefinder works here (it doesn't under Gazebo/JSON).
+RNGFND1_TYPE    100
+RNGFND1_ORIENT  25
+RNGFND1_MIN     0.15
+RNGFND1_MAX     40.0
+SIM_FLOW_ENABLE 1
+FLOW_TYPE       10
+
+# Onboard GPS -> optical flow switching: ahrs-source-gps-optflow-auto.lua,
+# copied into each run's scripts/ folder by ga_faults.run
+SCR_ENABLE      1
+SCR_USER1       10.0    # flow allowed below this rangefinder distance (m)
+SCR_USER2       0.3     # GPS counts as good at or below this speed accuracy (m/s)
+SCR_USER3       50      # minimum optical flow quality (SITL flow reports 51)
+SCR_USER4       0.15    # maximum optical flow innovation for flow to be usable
+
+# Default Copter log mask plus Fast IMU (bit 18) - 400 Hz IMU, so the same
+# logs can be fed to the custom estimator
+LOG_BITMASK     442366

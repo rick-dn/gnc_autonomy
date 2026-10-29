@@ -1,0 +1,46 @@
+fault,run,detected,detection_s,detected_by,fallback,err_baseline_m,err_mean_m,err_max_m,err_end_m,recovered
+accel_bias,run_1,False,,,none,0.061,0.227,0.681,0.104,True
+accel_bias,run_2,False,,,none,0.05,0.234,0.779,0.066,True
+accel_bias,run_3,False,,,none,0.055,0.237,0.781,0.07,True
+accel_bias,run_4,False,,,none,0.056,0.227,0.757,0.077,True
+accel_bias,run_5,False,,,none,0.054,0.237,0.697,0.055,True
+accel_bias_large,run_1,True,1.5,EKF3 lane switch 1,lane switch,0.058,0.056,0.868,0.04,True
+accel_bias_large,run_2,True,1.27,EKF3 lane switch 1,lane switch,0.053,0.06,0.757,0.034,True
+accel_bias_large,run_3,True,1.39,EKF3 lane switch 1,lane switch,0.055,0.058,0.759,0.063,True
+accel_bias_large,run_4,True,1.39,EKF3 lane switch 1,lane switch,0.055,0.057,0.759,0.06,True
+accel_bias_large,run_5,True,1.46,EKF3 lane switch 1,lane switch,0.052,0.063,0.876,0.042,True
+gps_glitch_5m,run_1,True,0.11,SP > 1,rejected GPS,0.057,4.185,5.118,0.031,True
+gps_glitch_5m,run_2,True,0.11,SP > 1,rejected GPS,0.051,4.192,5.162,0.05,True
+gps_glitch_5m,run_3,True,0.31,SP > 1,rejected GPS,0.055,4.174,5.107,0.027,True
+gps_glitch_5m,run_4,True,0.21,SP > 1,rejected GPS,0.056,4.18,5.118,0.036,True
+gps_glitch_5m,run_5,True,0.11,SP > 1,"rejected GPS, lane switch",0.053,4.171,5.129,0.029,True
+gps_loss,run_1,True,4.49,Auto switched to Source 2,switched to optical flow,0.059,0.437,0.922,0.026,True
+gps_loss,run_2,True,4.45,Auto switched to Source 2,switched to optical flow,0.052,0.27,0.596,0.051,True
+gps_loss,run_3,True,4.37,Auto switched to Source 2,switched to optical flow,0.055,0.298,0.765,0.027,True
+gps_loss,run_4,True,4.57,Auto switched to Source 2,switched to optical flow,0.054,0.299,0.719,0.026,True
+gps_loss,run_5,True,4.41,Auto switched to Source 2,switched to optical flow,0.055,0.3,0.715,0.027,True
+gyro_bias,run_1,False,,,none,0.057,0.281,0.892,0.131,True
+gyro_bias,run_2,False,,,none,0.054,0.269,0.855,0.098,True
+gyro_bias,run_3,False,,,none,0.053,0.274,0.838,0.126,True
+gyro_bias,run_4,False,,,none,0.055,0.277,0.852,0.14,True
+gyro_bias,run_5,False,,,none,0.052,0.289,0.872,0.096,True
+gyro_bias_large,run_1,True,2.49,EKF3 lane switch 1,lane switch,0.06,0.057,0.845,12.362,False
+gyro_bias_large,run_2,True,2.58,EKF3 lane switch 1,"lane switch, compass switch",0.053,0.063,0.998,0.171,True
+gyro_bias_large,run_3,True,2.39,EKF3 lane switch 1,lane switch,0.055,0.059,0.838,0.35,True
+gyro_bias_large,run_4,True,2.59,EKF3 lane switch 1,lane switch,0.054,0.064,0.959,3.518,False
+gyro_bias_large,run_5,True,2.49,EKF3 lane switch 1,lane switch,0.052,0.066,0.853,0.149,True
+mag_fail,run_1,True,10.12,EKF3 IMU0 switching to compass 1,compass switch,0.058,0.05,0.181,0.025,True
+mag_fail,run_2,True,10.01,EKF3 IMU0 switching to compass 1,compass switch,0.051,0.049,0.146,0.05,True
+mag_fail,run_3,True,10.02,EKF3 IMU0 switching to compass 1,compass switch,0.056,0.048,0.158,0.027,True
+mag_fail,run_4,True,10.02,EKF3 IMU0 switching to compass 1,compass switch,0.055,0.05,0.187,0.027,True
+mag_fail,run_5,True,10.02,EKF3 IMU0 switching to compass 1,compass switch,0.053,0.049,0.158,0.028,True
+mag_offset,run_1,True,0.31,SM > 1,compass switch,0.059,0.049,0.158,0.027,True
+mag_offset,run_2,True,0.21,SM > 1,compass switch,0.053,0.051,0.179,0.048,True
+mag_offset,run_3,True,0.31,SM > 1,compass switch,0.056,0.05,0.168,0.03,True
+mag_offset,run_4,True,0.21,SM > 1,compass switch,0.055,0.048,0.146,0.028,True
+mag_offset,run_5,True,0.21,SM > 1,compass switch,0.054,0.05,0.158,0.031,True
+none,run_1,False,,,none,0.058,0.048,0.158,0.03,True
+none,run_2,False,,,none,0.052,0.05,0.168,0.051,True
+none,run_3,False,,,none,0.059,0.047,0.158,0.026,True
+none,run_4,False,,,none,0.057,0.049,0.167,0.029,True
+none,run_5,False,,,none,0.055,0.049,0.157,0.027,True
